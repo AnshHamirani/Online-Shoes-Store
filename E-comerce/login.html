@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pullo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #fff;
+        }
+
+        form {
+            width: 400px;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background: #de1f26;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        input {
+            width: 90%;
+            padding: 15px;
+            border: none;
+            border-bottom: 2px solid #007bff;
+            border-radius: 15px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: bolder;
+        }
+
+        button {
+            width: 150px;
+            display: block;
+            padding: 12px;
+            background-color: #301C3B;
+            color: white;
+            border: none;
+            border-radius: 150px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .xy{
+            font-size: 2rem;
+        }
+        button:hover {
+            background-color: #53276a;
+        }
+        .button-container {
+            display: flex;
+            justify-content:space-evenly; /* Align buttons to the right */
+            gap: 2px; /* Add spacing between buttons */
+            margin-top: 10px; /* Optional margin */
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <form id="login">
+            <h1>Login</h1>
+            <input id="email" type="email" name="email" placeholder="Email" required>
+            <input id="password" type="password" name="password" placeholder="Password" required>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="./signup.html" class="xy">Signup</a>
+            </div>            
+        </form>
+        <div id="error-message" style="color: red; text-align: center;"></div>
+    </div>
+    <script>
+        // Login Logic
+        document.getElementById('login').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+    
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            // Retrieve stored user data
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+    
+            if (storedUser && storedUser.email === email && storedUser.password === password) {
+                alert('Login successful!');
+                
+                // Redirect to the stored URL or default to home page if no redirect URL is set
+                const redirectUrl = localStorage.getItem('redirectUrl') || './home.html' ;
+                window.location.href = redirectUrl;
+    
+                // Clear input fields after successful login
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+            } else {
+                document.getElementById('error-message').textContent = 'Invalid email or password!';
+            }
+        });
+    
+        // Store the current page URL before redirecting to the login page
+        if (window.location.href.includes('login.html')) {
+            localStorage.setItem('redirectUrl', document.referrer || './home.html');
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pullo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container checkout-container mt-5">
+        <h2 class="mb-4 text-center">Checkout</h2>
+        <div class="row">
+            <!-- Customer Information -->
+            <div class="col-md-6 mb-4">
+                <div class="card p-4">
+                    <h4 class="mb-3">Customer Details</h4>
+                    <form id="checkoutForm" novalidate>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                            <div class="invalid-feedback">Please provide your name.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                            <div class="invalid-feedback">Please provide a valid email address.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                            <div class="invalid-feedback">Please provide a valid phone number.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Shipping Address</label>
+                            <textarea class="form-control" id="address" rows="3" placeholder="Enter your shipping address" required></textarea>
+                            <div class="invalid-feedback">Please provide a shipping address.</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="col-md-6 mb-4">
+                <div class="card p-4">
+                    <h4 class="mb-3">Payment Method</h4>
+                    <form>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" checked>
+                            <label class="form-check-label" for="creditCard">Credit/Debit Card</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Card Number</label>
+                            <input type="text" class="form-control" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="expiryDate" class="form-label">Expiry Date</label>
+                                <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cvv" class="form-label">CVV</label>
+                                <input type="password" class="form-control" id="cvv" placeholder="XXX" required>
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="paymentMethod" id="cod">
+                            <label class="form-check-label" for="cod">Cash on Delivery</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Order Summary -->
+            <div class="col-md-12">
+                <div class="card p-4">
+                    <h4 class="mb-3">Order Summary</h4>
+                    <ul class="list-group mb-3" id="order-summary">
+                        <!-- Dynamic Order Summary -->
+                    </ul>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary btn-lg" id="placeOrderButton">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Function to dynamically load the order summary
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderSummaryContainer = document.querySelector('#order-summary');
+            let subtotal = 0;
+
+            // Clear previous items
+            orderSummaryContainer.innerHTML = '';
+
+            cart.forEach(item => {
+                const total = item.price * item.quantity;
+                subtotal += total;
+
+                const listItem = document.createElement('li');
+                listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between');
+                listItem.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <strong>$${total.toFixed(2)}</strong>
+                `;
+                orderSummaryContainer.appendChild(listItem);
+            });
+
+            // Calculate tax and total
+            const tax = subtotal * 0.1;
+            const total = subtotal + tax;
+
+            // Append subtotal, tax, and total
+            orderSummaryContainer.innerHTML += `
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Subtotal</span>
+                    <strong>$${subtotal.toFixed(2)}</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Tax (10%)</span>
+                    <strong>$${tax.toFixed(2)}</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total</span>
+                    <strong>$${total.toFixed(2)}</strong>
+                </li>
+            `;
+        }
+
+        // Function to validate the form and place the order
+        function placeOrder() {
+            const form = document.getElementById('checkoutForm');
+
+            // Validate the form before proceeding
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return; // Prevent order placement if form is invalid
+            }
+
+            // Check selected payment method
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').id;
+            let paymentValid = false;
+
+            if (paymentMethod === "creditCard") {
+                // Validate credit card fields if Credit Card is selected
+                const cardNumber = document.getElementById('cardNumber').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+
+                // Basic validation for credit card details
+                if (cardNumber.length === 19 && expiryDate.length === 5 && cvv.length === 3) {
+                    paymentValid = true;
+                } else {
+                    alert('Please provide valid credit card details.');
+                    return; // Prevent order placement if details are invalid
+                }
+            } else if (paymentMethod === "cod") {
+                // If "Cash on Delivery" is selected, no extra validation is needed
+                paymentValid = true;
+            }
+
+            // If payment method is valid, proceed with order placement
+            if (paymentValid) {
+                const orderDetails = {
+                    customer: {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        address: document.getElementById('address').value
+                    },
+                    paymentMethod: paymentMethod,
+                    orderSummary: JSON.parse(localStorage.getItem('cart')) || []
+                };
+
+                // Optionally, save order to localStorage or send to backend
+                console.log('Order placed:', orderDetails);
+                
+                localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
+                // Redirect to the home page
+                window.location.href = './order.html';
+            }
+        }
+
+        // Add event listener to Place Order button
+        document.getElementById('placeOrderButton').addEventListener('click', placeOrder);
+
+        // Load order summary on page load
+        document.addEventListener('DOMContentLoaded', loadOrderSummary);
+    </script>
+</body>
+</html>

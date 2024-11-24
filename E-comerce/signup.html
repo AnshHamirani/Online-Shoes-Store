@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pullo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #fff;
+        }
+
+        form {
+            width: 400px;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background: #de1f26;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        input {
+            width: 90%;
+            padding: 15px;
+            border: none;
+            border-bottom: 2px solid #007bff;
+            border-radius: 15px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: bolder;
+        }
+
+        button {
+            width: 150px;
+            margin: 0 auto;
+            display: block;
+            padding: 12px;
+            background-color: #301C3B;
+            color: white;
+            border: none;
+            border-radius: 150px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #53276a;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="signup">
+            <h1>Signup</h1>
+            <input id="username" type="text" name="username" placeholder="Username" required>
+            <input id="email" type="email" name="email" placeholder="Email" required>
+            <input id="contact" type="tel" name="contact" placeholder="Contact" required>
+            <input id="birthdate" type="date" name="birthdate" placeholder="Birth Date" required>
+            <input id="address" type="text" name="address" placeholder="Address" required>
+            <input id="password" type="password" name="password" placeholder="Password" required>
+            <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm Password" required>
+            <button type="submit">Signup</button>
+        </form>
+    </div>
+<script>
+    
+    document.getElementById('signup').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Fetch form data
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const contact = document.getElementById('contact').value;
+        const birthdate = document.getElementById('birthdate').value;
+        const address = document.getElementById('address').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Check if passwords match
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        // Create a user object
+        const user = {
+            username,
+            email,
+            contact,
+            birthdate,
+            address,
+            password
+        };
+
+        // Store user data in local storage
+        localStorage.setItem('user', JSON.stringify(user));
+
+        // Alert the user
+        alert("Signup successful!");
+
+        // Get the page the user was on before
+        const redirectUrl = localStorage.getItem('redirectUrl') || './home.html';
+        
+        // Redirect to the stored URL or home page if not available
+        window.location.href = './home.html';
+
+        // Clear the form
+        document.getElementById('signup').reset();
+    });
+
+    // Store the current page URL before redirecting to signup page
+    if (window.location.href.includes('signup.html')) {
+        localStorage.setItem('redirectUrl', document.referrer || './home.html');
+    }
+</script>
+
+</script>
+</body>
+</html>

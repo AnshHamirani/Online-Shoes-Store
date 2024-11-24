@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pullo</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN (for cart and login icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-------------navbar-------->
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container">
+          <!-- Logo -->
+          <a class="navbar-brand" href="./home.html"><img src="./image/logo.png" alt="Logo"></a>
+    
+          <!-- Toggle button for mobile view -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <!-- Navbar content -->
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="./home.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./men.html">Men</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./women.html">Women</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./kids.html">Kids</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./contact.html">Contact Us</a>
+              </li>
+            </ul>
+    
+            <!-- Cart and Login Icons -->
+            <div class="d-flex align-items-center">
+              <a href="./cart.html" class="icon-nav">
+                <i class="bi bi-cart3"></i>
+              </a>
+              <a href="./order.html" class="icon-nav" title="View Order">
+                <i class="bi bi-file-earmark-check"></i>
+            </a> 
+            <a href="./login.html" id="login-link" class="icon-nav">
+              <i class="bi bi-person-circle"></i>
+          </a>
+          <a href="#" id="logout-link" class="icon-nav" style="display: none;">
+              <i class="bi bi-box-arrow-right"></i>
+          </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-----------shoes----------->
+      <section id="shopNow" class="ab py-5 ">
+      <div class="container text-center text-white">
+        <div class="mb-5">
+        <h2 class="mb-4">Men's Shoes</h2>
+        <div class="row">
+          <!-- Product 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="./image/men/shoes-2.jpg" class="card-img-top" alt="Product 1">
+              <div class="card-body">
+                <h5 class="card-title">Shoe-1</h5>
+                <p class="card-text">$99.99</p>
+                <button class="btn btn-primary add-to-cart" 
+                  data-name="Shoe-1" 
+                  data-price="99.99" 
+                  data-image="./image/men/shoes-2.jpg">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="./image/men/shoes-3.jpg" class="card-img-top" alt="Product 2">
+              <div class="card-body">
+                <h5 class="card-title">Shoe-2</h5>
+                <p class="card-text">$49.99</p>
+                <button class="btn btn-primary add-to-cart" 
+                  data-name="Shoe-2" 
+                  data-price="49.99" 
+                  data-image="./image/men/shoes-3.jpg">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="./image/men/shoes-4.jpg" class="card-img-top" alt="Product 3">
+              <div class="card-body">
+                <h5 class="card-title">Shoe-3</h5>
+                <p class="card-text">$29.99</p>
+                <button class="btn btn-primary add-to-cart" 
+                  data-name="Shoe-3" 
+                  data-price="29.99" 
+                  data-image="./image/men/shoes-4.jpg">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Product 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="./image/men/shoes-1.jpg" class="card-img-top" alt="Product 4">
+              <div class="card-body">
+                <h5 class="card-title">Shoe-4</h5>
+                <p class="card-text">$99.99</p>
+                <button class="btn btn-primary add-to-cart" 
+                  data-name="Shoe-4" 
+                  data-price="99.99" 
+                  data-image="./image/men/shoes-1.jpg">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="./image/men/shoes-5.png" class="card-img-top" alt="Product 5">
+              <div class="card-body">
+                <h5 class="card-title">Shoe-5</h5>
+                <p class="card-text">$49.99</p>
+                <button class="btn btn-primary add-to-cart" 
+                  data-name="Shoe-5" 
+                  data-price="49.99" 
+                  data-image="./image/men/shoes-5.jpg">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="./image/men/shoes-7.png" class="card-img-top" alt="Product 6">
+              <div class="card-body">
+                <h5 class="card-title">Shoe-6</h5>
+                <p class="card-text">$29.99</p>
+                <button class="btn btn-primary add-to-cart" 
+                  data-name="Shoe-6" 
+                  data-price="29.99" 
+                  data-image="./image/men/shoes-7.jpg">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Product 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="./image\men\shoes-6.png" class="card-img-top" alt="Product 7">
+              <div class="card-body">
+                <h5 class="card-title">Shoe-7</h5>
+                <p class="card-text">$99.99</p>
+                <button class="btn btn-primary add-to-cart" 
+                  data-name="Shoe-7" 
+                  data-price="99.99" 
+                  data-image="./image/men/shoes-6.jpg">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="./image/men/shoes-8.jpg" class="card-img-top" alt="Product 8">
+              <div class="card-body">
+                <h5 class="card-title">Shoe-8</h5>
+                <p class="card-text">$49.99</p>
+                <button class="btn btn-primary add-to-cart" 
+                  data-name="Shoe-8" 
+                  data-price="49.99" 
+                  data-image="./image/men/shoes-8.jpg">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Product 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="./image/men/shoes-9.png" class="card-img-top" alt="Product 9">
+              <div class="card-body">
+                <h5 class="card-title">Shoe-9</h5>
+                <p class="card-text">$29.99</p>
+                <button class="btn btn-primary add-to-cart" 
+                  data-name="Shoe-9" 
+                  data-price="29.99" 
+                  data-image="./image/men/shoes-9.jpg">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<footer class="text-center py-4 bg-dark text-white">
+  <div class="container">
+      <p>&copy; 2024 Pullo Store. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS Bundle CDN (includes Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Add event listener for adding items to cart
+  const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user) {
+        // If user is logged in, hide the login link and show logout
+        document.getElementById('login-link').style.display = 'none';
+        document.getElementById('logout-link').style.display = 'block';
+    } else {
+        alert("Please log in to access this page.");
+        window.location.href = './login.html';
+    }
+
+    // Add event listener for logout
+    document.getElementById('logout-link').addEventListener('click', function() {
+        // Clear user data from localStorage
+        localStorage.removeItem('user');
+        alert("You have been logged out!");
+        window.location.href = './home.html'; // Redirect to home page
+    });
+
+    // Add to Cart functionality
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function () {
+            if (!user) {
+                alert("Please log in to add items to your cart.");
+                window.location.href = './login.html';
+                return;
+            }
+
+            const name = this.dataset.name;
+            const price = parseFloat(this.dataset.price);
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingItem = cart.find(item => item.name === name);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${name} has been added to your cart!`);
+        });
+    });
+  </script>
+  
+</body>
+</html>

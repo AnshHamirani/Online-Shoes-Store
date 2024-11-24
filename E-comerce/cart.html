@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pullo</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN (for cart and login icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">Shopping Cart</h2>
+  
+    <!-- Cart Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id="cart-items">
+          <!-- Cart items will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Cart Summary -->
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h4>Cart Summary</h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Subtotal</span>
+            <strong id="subtotal">$0.00</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Tax (10%)</span>
+            <strong id="tax">$0.00</strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total</span>
+            <strong id="total">$0.00</strong>
+          </li>
+        </ul>
+        <div class="d-flex justify-content-between">
+          <a href="./home.html" class="btn btn-secondary me-3">Home</a>
+          <a href="./checkout.html" class="btn btn-primary">Checkout</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+ function loadCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || []; // Fetch cart from localStorage
+    const cartItemsContainer = document.getElementById('cart-items');
+    cartItemsContainer.innerHTML = ''; // Clear existing items
+
+    let subtotal = 0;
+
+    cart.forEach((item, index) => {
+        const price = parseFloat(item.price); // Ensure price is a number
+        const total = price * item.quantity; // Calculate total
+        subtotal += total;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><img src="${item.image}" alt="${item.name}" class="img-fluid" style="max-width: 80px;"></td>
+            <td>${item.name}</td>
+            <td>$${price.toFixed(2)}</td>
+            <td>
+                <div class="input-group">
+                    <button class="btn btn-outline-secondary btn-minus" data-index="${index}">-</button>
+                    <input type="number" class="form-control text-center quantity-input" value="${item.quantity}" min="1">
+                    <button class="btn btn-outline-secondary btn-plus" data-index="${index}">+</button>
+                </div>
+            </td>
+            <td>$${total.toFixed(2)}</td>
+            <td>
+                <button class="btn btn-danger btn-sm delete-btn" data-index="${index}">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </td>
+        `;
+        cartItemsContainer.appendChild(row);
+    });
+
+    // Update summary
+    const tax = subtotal * 0.1;
+    const total = subtotal + tax;
+
+    document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+    document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+    document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+}
+function updateQuantity(index, quantity) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart[index].quantity = quantity; // Update the quantity
+    localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart to localStorage
+    loadCart(); // Reload cart to reflect changes
+}
+
+// Remove Item from Cart
+function removeItem(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1); // Remove the item at the specified index
+    localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart to localStorage
+    loadCart(); // Reload cart to reflect changes
+}
+
+// Event Listener for Buttons
+document.addEventListener('click', function (event) {
+    if (event.target.matches('.btn-plus')) {
+        const index = parseInt(event.target.dataset.index);
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart[index].quantity += 1; // Increment quantity
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart(); // Reload cart to reflect changes
+    }
+
+    if (event.target.matches('.btn-minus')) {
+        const index = parseInt(event.target.dataset.index);
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart[index].quantity > 1) { // Ensure quantity doesn't go below 1
+            cart[index].quantity -= 1; // Decrement quantity
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart(); // Reload cart to reflect changes
+        }
+    }
+
+    if (event.target.matches('.delete-btn')) {
+        const index = parseInt(event.target.dataset.index);
+        removeItem(index); // Remove item from cart
+    }
+});
+
+// Event Listener for Quantity Input Changes
+document.addEventListener('change', function (event) {
+    if (event.target.matches('.quantity-input')) {
+        const index = parseInt(event.target.dataset.index);
+        const quantity = parseInt(event.target.value);
+        if (quantity > 0) { // Ensure quantity is valid
+            updateQuantity(index, quantity);
+        } else {
+            event.target.value = 1; // Reset to 1 if invalid
+        }
+    }
+});
+
+// Load cart on page load
+document.addEventListener('DOMContentLoaded', function(){
+const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+        alert("Please log in to access this page.");
+        window.location.href = './login.html'; // Redirect to login page
+        return; // Stop further execution
+    }
+  })
+
+</script>
+
+</body>
+</html>

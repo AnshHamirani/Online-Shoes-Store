@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pullo</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN (for cart and login icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand" href="./home.html"><img src="./image/logo.png" alt="Logo"></a>
+
+      <!-- Toggle button for mobile view -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar content -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="./home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./men.html">Men</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./women.html">Women</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./kids.html">Kids</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./contact.html">Contact Us</a>
+          </li>
+        </ul>
+
+        <!-- Cart and Login Icons -->
+        <div class="d-flex align-items-center">
+          <a href="./cart.html" class="icon-nav">
+            <i class="bi bi-cart3"></i>
+          </a>
+          <a href="./order.html" class="icon-nav" title="View Order">
+            <i class="bi bi-file-earmark-check"></i>
+        </a>        
+        <a href="./login.html" id="login-link" class="icon-nav">
+          <i class="bi bi-person-circle"></i>
+      </a>
+      <a href="#" id="logout-link" class="icon-nav" style="display: none;">
+          <i class="bi bi-box-arrow-right"></i>
+      </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+
+<div id="footwearSlider" class="carousel slide" data-bs-ride="carousel">
+    <!-- Carousel Indicators -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#footwearSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Men's Footwear"></button>
+      <button type="button" data-bs-target="#footwearSlider" data-bs-slide-to="1" aria-label="Women's Footwear"></button>
+      <button type="button" data-bs-target="#footwearSlider" data-bs-slide-to="2" aria-label="Kids' Footwear"></button>
+    </div>
+  
+    <!-- Carousel Slides -->
+    <div class="carousel-inner">
+      <!-- Men's Footwear Slide -->
+      <div class="carousel-item active">
+        <img src="./image/men/shoes-1.jpg" class="d-block w-100" alt="Men's Footwear">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Men's Footwear</h5>
+          <p>Discover the latest trends in Men's Footwear.</p>
+          <a href="men.html" class="btn btn-primary">See More</a>
+        </div>
+      </div>
+  
+      <!-- Women's Footwear Slide -->
+      <div class="carousel-item">
+        <img src="./image/women/shoes-1.jpg" class="d-block w-100" alt="Women's Footwear">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Women's Footwear</h5>
+          <p>Explore stylish and comfortable Women's Footwear.</p>
+          <a href="women.html" class="btn btn-primary">See More</a>
+        </div>
+      </div>
+  
+      <!-- Kids' Footwear Slide -->
+      <div class="carousel-item">
+        <img src="./image/kids/shoes-1.jpg" class="d-block w-100" alt="Kids' Footwear">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Kids' Footwear</h5>
+          <p>Find the perfect pair of shoes for your little ones.</p>
+          <a href="kids.html" class="btn btn-primary">See More</a>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Carousel Controls (Arrows) -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#footwearSlider" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#footwearSlider" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <section class="hero bg-dark text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4">Welcome to Pullo Store</h1>
+        <p>
+            Welcome to our online store, where fashion meets functionality. Our mission is to provide high-quality, stylish, and affordable footwear for men, women, and kids.
+        </p>
+        <p>
+            We take pride in delivering exceptional customer service and a seamless shopping experience.
+        </p>
+        <p>
+            Since our inception, we’ve focused on curating collections that cater to diverse tastes and needs. Whether you're looking for something trendy, comfortable, or durable, we’ve got you covered!
+        </p>
+        <p>
+            We are committed to sustainability and ensuring our products are sourced responsibly. Thank you for choosing us as your trusted shopping destination.
+        </p> 
+    </div>
+    <a href="#shopNow" class="btn btn-light btn-primary">Shop Now</a>
+</section>
+
+
+  <section id="shopNow" class="ab py-5 text-white">
+    <div class="container text-center">
+      <div class="mb-5">
+      <h2 class="mb-4">Men's Shoes</h2>
+      <div class="row">
+        <!-- Product 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./image/men/shoes-2.jpg" class="card-img-top" alt="Product 1">
+            <div class="card-body">
+              <h5 class="card-title">Shoe-1</h5>
+              <p class="card-text">$99.99</p>
+            </div>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./image/men/shoes-3.jpg" class="card-img-top" alt="Product 2">
+            <div class="card-body">
+              <h5 class="card-title">Shoe-2</h5>
+              <p class="card-text">$49.99</p>
+              
+            </div>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./image/men/shoes-4.jpg" class="card-img-top" alt="Product 3">
+            <div class="card-body">
+              <h5 class="card-title">Shoe-3</h5>
+              <p class="card-text">$29.99</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="./men.html" class="btn btn-primary">See More</a>
+    </div>
+
+      <div class="mb-5">
+      <h2 class="mb-4">Women's Shoes</h2>
+      <div class="row">
+        <!-- Product 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./image/women/shoes-2.jpg" class="card-img-top" alt="Product 1">
+            <div class="card-body">
+              <h5 class="card-title">Shoe-1</h5>
+              <p class="card-text">$99.99</p>
+            </div>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./image/women/shoes-3.png" class="card-img-top" alt="Product 2">
+            <div class="card-body">
+              <h5 class="card-title">Shoe-2</h5>
+              <p class="card-text">$49.99</p>
+              
+            </div>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./image/women/shoes-4.png" class="card-img-top" alt="Product 3">
+            <div class="card-body">
+              <h5 class="card-title">Shoe-3</h5>
+              <p class="card-text">$29.99</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="./women.html" class="btn btn-primary">See More</a>
+      </div>
+
+      <div class="mb-5">
+      <h2 class="mb-4">Kid's Shoes</h2>
+      <div class="row">
+        <!-- Product 1 -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./image/kids/shoes-2.jpg" class="card-img-top" alt="Product 1">
+            <div class="card-body">
+              <h5 class="card-title">Shoe-1</h5>
+              <p class="card-text">$99.99</p>
+            </div>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./image/kids/shoes-3.jpg" class="card-img-top" alt="Product 2">
+            <div class="card-body">
+              <h5 class="card-title">Shoe-2</h5>
+              <p class="card-text">$49.99</p>
+              
+            </div>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./image/kids/shoes-4.jpg" class="card-img-top" alt="Product 3">
+            <div class="card-body">
+              <h5 class="card-title">Shoe-3</h5>
+              <p class="card-text">$29.99</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="./kids.html" class="btn btn-primary">See More</a>
+      </div>
+
+    </div>
+  </section>
+
+<section class="ab py-5 text-white">
+    <div class="container text-center">
+      <h2 class="mb-4">About Us</h2>
+      <p>We offer a wide variety of fashionable and affordable clothing for everyone. Whether you're shopping for yourself or looking for the perfect gift, our collection has something for you. We pride ourselves on offering high-quality products at competitive prices.</p> 
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+      <a href="#contact" class="btn btn-primary btn-lg">Contact Us</a>
+  </div>
+</section>
+
+<footer class="text-center py-4 bg-dark text-white">
+  <div class="container">
+      <p>&copy; 2024 Pullo Store. All rights reserved.</p>
+  </div>
+</footer>
+<!-- Bootstrap JS Bundle CDN (includes Popper.js) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const user = JSON.parse(localStorage.getItem('user'));
+
+if (user) {
+    // If user is logged in, hide the login link and show logout
+    document.getElementById('login-link').style.display = 'none';
+    document.getElementById('logout-link').style.display = 'block';
+}
+
+// Add event listener for logout
+document.getElementById('logout-link').addEventListener('click', function() {
+    // Clear user data from localStorage
+    localStorage.removeItem('user');
+    
+    // Redirect to home page or login page
+    window.location.href = './home.html'; // Redirect to home page
+});
+</script>
+
+</body>
+</html>
